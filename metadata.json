@@ -1,0 +1,6 @@
+{
+  "name": "FamilyWise AI",
+  "description": "Smart Family Expense Tracker — offline-first room database, multi-member tracking, and AI financial insights.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

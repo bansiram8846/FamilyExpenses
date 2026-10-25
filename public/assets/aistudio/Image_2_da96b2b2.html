@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FamilyWise AI - Home Dashboard</title>
+<!-- Material Symbols Outlined font -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-error": "#ffffff",
+            "background": "#f8f9ff",
+            "on-secondary-fixed": "#00201d",
+            "tertiary": "#000000",
+            "on-surface-variant": "#45464d",
+            "surface-dim": "#cbdbf5",
+            "on-primary-fixed-variant": "#3f465c",
+            "primary-fixed-dim": "#bec6e0",
+            "surface-tint": "#565e74",
+            "inverse-primary": "#bec6e0",
+            "primary-container": "#131b2e",
+            "surface-container": "#e5eeff",
+            "error-container": "#ffdad6",
+            "outline-variant": "#c6c6cd",
+            "on-tertiary-fixed-variant": "#005236",
+            "secondary": "#006a61",
+            "surface-variant": "#d3e4fe",
+            "on-background": "#0b1c30",
+            "on-secondary": "#ffffff",
+            "secondary-fixed": "#89f5e7",
+            "on-tertiary-fixed": "#002113",
+            "surface-container-high": "#dce9ff",
+            "on-tertiary-container": "#009668",
+            "tertiary-container": "#002113",
+            "tertiary-fixed-dim": "#4edea3",
+            "secondary-container": "#86f2e4",
+            "on-primary-fixed": "#131b2e",
+            "on-primary-container": "#7c839b",
+            "error": "#ba1a1a",
+            "secondary-fixed-dim": "#6bd8cb",
+            "inverse-surface": "#213145",
+            "on-primary": "#ffffff",
+            "on-secondary-container": "#006f66",
+            "surface-container-highest": "#d3e4fe",
+            "on-surface": "#0b1c30",
+            "tertiary-fixed": "#6ffbbe",
+            "surface-container-low": "#eff4ff",
+            "primary-fixed": "#dae2fd",
+            "surface-container-lowest": "#ffffff",
+            "on-error-container": "#93000a",
+            "primary": "#000000",
+            "surface-bright": "#f8f9ff",
+            "outline": "#76777d",
+            "on-secondary-fixed-variant": "#005049",
+            "on-tertiary": "#ffffff",
+            "surface": "#f8f9ff",
+            "inverse-on-surface": "#eaf1ff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-sm": "0.5rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "gutter": "1rem",
+            "space-xl": "2rem",
+            "margin-mobile": "1rem",
+            "gutter-mobile": "0.75rem",
+            "space-xs": "0.25rem",
+            "margin": "1.25rem"
+          },
+          "fontFamily": {
+            "display-currency": ["Inter"],
+            "body-lg": ["Inter"],
+            "body-sm": ["Inter"],
+            "headline-lg": ["Inter"],
+            "title-md": ["Inter"],
+            "label-lg": ["Inter"],
+            "body-md": ["Inter"],
+            "display-currency-mobile": ["Inter"],
+            "headline-sm": ["Inter"],
+            "headline-md": ["Inter"],
+            "label-md": ["Inter"],
+            "label-sm": ["Inter"]
+          },
+          "fontSize": {
+            "display-currency": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+            "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "title-md": ["16px", { "lineHeight": "22px", "fontWeight": "600" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "fontWeight": "500" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "display-currency-mobile": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+            "headline-md": ["22px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "label-md": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface antialiased min-h-screen selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- Mobile Screen Container -->
+<div class="max-w-md mx-auto min-h-screen flex flex-col bg-background relative pb-28 shadow-xl">
+<!-- Top App Bar (Shared Components Anchor Compliant) -->
+<header class="bg-surface-container-lowest sticky top-0 z-40 shadow-sm border-b border-outline-variant">
+<!-- Status & Switcher Row -->
+<div class="flex justify-between items-center w-full px-margin-mobile py-2 max-w-screen-md mx-auto">
+<!-- Leading Icon & Household Switcher -->
+<div class="flex items-center space-x-2">
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined text-[20px]" data-icon="family_restroom">family_restroom</span>
+</div>
+<button class="flex items-center space-x-1 hover:bg-surface-container rounded-lg px-2 py-1 transition-colors">
+<span class="font-title-md text-title-md font-semibold text-on-surface">Sharma Family</span>
+<span class="material-symbols-outlined text-outline text-[18px]" data-icon="expand_more">expand_more</span>
+</button>
+</div>
+<!-- Trailing Account & Quick Actions -->
+<div class="flex items-center space-x-2">
+<!-- Notification Bell -->
+<button class="w-8 h-8 rounded-full hover:bg-surface-container flex items-center justify-center text-on-surface-variant relative active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[20px]" data-icon="notifications">notifications</span>
+<span class="w-2 h-2 rounded-full bg-secondary absolute top-1.5 right-1.5 ring-2 ring-surface-container-lowest"></span>
+</button>
+<!-- User Avatar Profile Icon (Shared Anchor trailing_icon) -->
+<button class="w-8 h-8 rounded-full hover:bg-surface-container flex items-center justify-center text-primary active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[24px]" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</div>
+<!-- Offline Sync Status Bar Sub-header -->
+<div class="px-margin-mobile py-1.5 bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center space-x-1.5">
+<span class="flex h-2 w-2 relative">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-on-tertiary-container opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-on-tertiary-container"></span>
+</span>
+<span class="material-symbols-outlined text-[15px] text-on-tertiary-container" data-icon="database">database</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Offline Ready • Stored Locally</span>
+</div>
+<span class="font-label-sm text-label-sm font-medium text-secondary flex items-center">
+<span class="material-symbols-outlined text-[14px] mr-0.5" data-icon="check_circle">check_circle</span>
+          Synced
+        </span>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="px-margin-mobile pt-4 space-y-4 flex-1">
+<!-- Greeting Banner -->
+<div class="flex items-start justify-between">
+<div>
+<h1 class="font-headline-md text-headline-md font-semibold text-on-surface tracking-tight">Good evening, Rajesh!</h1>
+<p class="font-body-md text-body-md text-on-surface-variant flex items-center mt-0.5">
+<span>Sharma Household</span>
+<span class="inline-block mx-1.5 text-outline">•</span>
+<span>October 2024</span>
+</p>
+</div>
+<div class="p-2 bg-surface-container rounded-xl flex items-center">
+<span class="material-symbols-outlined text-secondary" data-icon="shield">shield</span>
+</div>
+</div>
+<!-- Financial Overview: Bento Grid Architecture -->
+<div class="grid grid-cols-1 gap-3.5">
+<!-- Primary Hero Card: Monthly Budget Tracker -->
+<section class="bg-surface-container-lowest rounded-xl p-4 border border-outline-variant shadow-sm relative overflow-hidden">
+<div class="flex justify-between items-start mb-2">
+<div>
+<span class="font-label-md text-label-md font-medium text-on-surface-variant uppercase tracking-wider">Spent this Month</span>
+<div class="mt-1 flex items-baseline">
+<span class="font-display-currency-mobile text-display-currency-mobile font-bold text-on-surface">₹24,650</span>
+<span class="font-body-md text-body-md text-on-surface-variant ml-2">/ ₹35,000</span>
+</div>
+</div>
+<!-- Member Share Indicator Stack -->
+<div class="flex items-center -space-x-1.5">
+<span class="w-7 h-7 rounded-full bg-primary text-on-primary flex items-center justify-center font-label-sm text-label-sm font-bold border-2 border-surface-container-lowest" title="Rajesh">R</span>
+<span class="w-7 h-7 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-label-sm text-label-sm font-bold border-2 border-surface-container-lowest" title="Priya">P</span>
+<span class="w-7 h-7 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center font-label-sm text-label-sm font-bold border-2 border-surface-container-lowest" title="Papa">+2</span>
+</div>
+</div>
+<!-- Progress Bar & Analytics -->
+<div class="space-y-1.5 mt-3">
+<div class="flex justify-between font-label-md text-label-md">
+<span class="text-on-surface-variant font-medium">70.4% used</span>
+<span class="text-secondary font-semibold">₹10,350 remaining</span>
+</div>
+<!-- Progress Track -->
+<div class="w-full bg-surface-container h-2.5 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full transition-all duration-500 ease-out" style="width: 70.4%;"></div>
+</div>
+</div>
+<!-- Bottom Micro Details -->
+<div class="mt-3.5 pt-3 border-t border-outline-variant flex items-center justify-between text-on-surface-variant">
+<div class="flex items-center font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px] text-secondary mr-1" data-icon="event_repeat">event_repeat</span>
+<span>7 days left in billing cycle</span>
+</div>
+<span class="font-label-sm text-label-sm bg-surface-container px-2 py-0.5 rounded-full text-on-surface">Safe pace</span>
+</div>
+</section>
+<!-- Comparison Card: Month-over-Month -->
+<section class="bg-surface-container-lowest rounded-xl p-3.5 border border-outline-variant shadow-sm flex items-center justify-between">
+<div class="space-y-0.5">
+<div class="font-label-md text-label-md text-on-surface-variant font-medium">vs Last Month (September)</div>
+<div class="flex items-center space-x-2">
+<span class="font-title-md text-title-md font-semibold text-on-surface">₹24,650</span>
+<span class="font-body-sm text-body-sm text-outline">vs</span>
+<span class="font-body-md text-body-md text-outline">₹22,250</span>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<!-- Increased badge -->
+<span class="inline-flex items-center px-2 py-1 rounded-full font-label-sm text-label-sm font-semibold bg-error-container text-on-error-container">
+<span class="material-symbols-outlined text-[14px] mr-0.5" data-icon="trending_up">trending_up</span>
+              +₹2,400 (10.8%)
+            </span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Higher this period</span>
+</div>
+</section>
+</div>
+<!-- FamilyWise AI Insight Card (Modern Tactile Rigor) -->
+<section class="bg-surface-container-low rounded-xl p-4 border border-secondary-container shadow-sm relative">
+<div class="flex items-center justify-between mb-2.5">
+<div class="flex items-center space-x-1.5">
+<div class="w-6 h-6 rounded-full bg-secondary flex items-center justify-center text-on-secondary">
+<span class="material-symbols-outlined text-[15px]" data-icon="auto_awesome" data-weight="fill" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<h2 class="font-title-md text-title-md font-semibold text-on-surface">Your FamilyWise AI Insight</h2>
+</div>
+<!-- Attribution Badge -->
+<span class="inline-flex items-center px-2 py-0.5 rounded-full font-label-sm text-label-sm bg-surface-container-lowest border border-outline-variant text-on-surface-variant">
+<span class="material-symbols-outlined text-[12px] mr-1 text-secondary" data-icon="psychology">psychology</span>
+            Local Analysis
+          </span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+          Your spending is <span class="font-semibold text-on-surface">₹2,400 higher</span> than last month. Groceries (₹8,450) and Dining (₹3,400) account for most of the increase. Review dining expenses to discover <span class="font-semibold text-secondary">₹1,200 potential monthly savings</span>.
+        </p>
+<!-- Context Action Cluster -->
+<div class="mt-3.5 flex items-center space-x-2.5">
+<button class="flex-1 bg-primary text-on-primary hover:bg-primary-container h-10 px-4 rounded-xl font-label-lg text-label-lg flex items-center justify-center space-x-1.5 transition-transform active:scale-95 shadow-sm">
+<span class="material-symbols-outlined text-[18px] text-secondary-fixed" data-icon="smart_toy">smart_toy</span>
+<span>Ask AI Assistant</span>
+</button>
+<button class="h-10 px-3.5 bg-surface-container-lowest border border-outline-variant hover:bg-surface-container rounded-xl font-label-lg text-label-lg text-on-surface flex items-center justify-center transition-colors">
+<span>View Breakdown</span>
+</button>
+</div>
+</section>
+<!-- Category Spending Breakdown (Quick Visual Bento) -->
+<section class="bg-surface-container-lowest rounded-xl p-4 border border-outline-variant shadow-sm">
+<div class="flex justify-between items-center mb-3">
+<div class="flex items-center space-x-1.5">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]" data-icon="pie_chart">pie_chart</span>
+<h3 class="font-title-md text-title-md font-semibold text-on-surface">Spending by Category</h3>
+</div>
+<button class="font-label-md text-label-md text-secondary font-semibold hover:underline flex items-center">
+            Details
+            <span class="material-symbols-outlined text-[16px] ml-0.5" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+<!-- Multi-segment visual bar -->
+<div class="w-full h-3 rounded-full overflow-hidden flex bg-surface-container mb-3.5">
+<div class="bg-secondary h-full" style="width: 34%;" title="Groceries: 34%"></div>
+<div class="bg-on-secondary-container h-full opacity-80" style="width: 20%;" title="Education: 20%"></div>
+<div class="bg-primary h-full opacity-70" style="width: 17%;" title="Utilities: 17%"></div>
+<div class="bg-surface-tint h-full" style="width: 15%;" title="Healthcare: 15%"></div>
+<div class="bg-error h-full" style="width: 14%;" title="Dining: 14%"></div>
+</div>
+<!-- Category Items Breakdown -->
+<div class="space-y-2.5">
+<!-- Item 1: Groceries -->
+<div class="flex items-center justify-between py-1">
+<div class="flex items-center space-x-2.5">
+<span class="w-7 h-7 rounded-lg bg-surface-container flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[18px]" data-icon="shopping_basket">shopping_basket</span>
+</span>
+<div>
+<div class="font-label-lg text-label-lg text-on-surface">Groceries & Kitchen</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">34% of monthly spends</div>
+</div>
+</div>
+<span class="font-title-md text-title-md font-semibold text-on-surface">₹8,450</span>
+</div>
+<!-- Item 2: School & Education -->
+<div class="flex items-center justify-between py-1 border-t border-outline-variant">
+<div class="flex items-center space-x-2.5">
+<span class="w-7 h-7 rounded-lg bg-surface-container flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined text-[18px]" data-icon="school">school</span>
+</span>
+<div>
+<div class="font-label-lg text-label-lg text-on-surface">School & Education</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">20% of monthly spends</div>
+</div>
+</div>
+<span class="font-title-md text-title-md font-semibold text-on-surface">₹5,000</span>
+</div>
+<!-- Item 3: Utilities -->
+<div class="flex items-center justify-between py-1 border-t border-outline-variant">
+<div class="flex items-center space-x-2.5">
+<span class="w-7 h-7 rounded-lg bg-surface-container flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined text-[18px]" data-icon="bolt">bolt</span>
+</span>
+<div>
+<div class="font-label-lg text-label-lg text-on-surface">Utilities & Electricity</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">17% of monthly spends</div>
+</div>
+</div>
+<span class="font-title-md text-title-md font-semibold text-on-surface">₹4,200</span>
+</div>
+<!-- Item 4: Healthcare -->
+<div class="flex items-center justify-between py-1 border-t border-outline-variant">
+<div class="flex items-center space-x-2.5">
+<span class="w-7 h-7 rounded-lg bg-surface-container flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined text-[18px]" data-icon="medical_services">medical_services</span>
+</span>
+<div>
+<div class="font-label-lg text-label-lg text-on-surface">Healthcare & Medicine</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">15% of monthly spends</div>
+</div>
+</div>
+<span class="font-title-md text-title-md font-semibold text-on-surface">₹3,600</span>
+</div>
+<!-- Item 5: Dining & Swiggy/Zomato (Alerted) -->
+<div class="flex items-center justify-between py-1 border-t border-outline-variant">
+<div class="flex items-center space-x-2.5">
+<span class="w-7 h-7 rounded-lg bg-error-container flex items-center justify-center text-on-error-container">
+<span class="material-symbols-outlined text-[18px]" data-icon="restaurant">restaurant</span>
+</span>
+<div>
+<div class="flex items-center space-x-1">
+<span class="font-label-lg text-label-lg text-on-surface">Dining & Food Delivery</span>
+<span class="w-2 h-2 rounded-full bg-error" title="Higher than budgeted"></span>
+</div>
+<div class="font-body-sm text-body-sm text-error font-medium">14% • Exceeds target</div>
+</div>
+</div>
+<span class="font-title-md text-title-md font-semibold text-error">₹3,400</span>
+</div>
+</div>
+</section>
+<!-- Recent Transactions List (Quick Glance) -->
+<section class="space-y-3 pt-1">
+<div class="flex justify-between items-center px-1">
+<h3 class="font-title-md text-title-md font-semibold text-on-surface">Recent Household Expenses</h3>
+<button class="font-label-md text-label-md text-secondary font-semibold hover:underline">
+            See all
+          </button>
+</div>
+<!-- Ledger Entries Card Group -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm divide-y divide-outline-variant overflow-hidden">
+<!-- Transaction 1: Blinkit -->
+<div class="p-3.5 flex items-center justify-between hover:bg-surface-container-low transition-colors">
+<div class="flex items-center space-x-3">
+<div class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[20px]" data-icon="local_mall">local_mall</span>
+</div>
+<div>
+<div class="font-title-md text-title-md font-semibold text-on-surface leading-tight">Blinkit Grocery Delivery</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant flex items-center space-x-1.5 mt-0.5">
+<span class="font-medium text-on-surface">Paid by Priya</span>
+<span>•</span>
+<span>UPI</span>
+<span>•</span>
+<span>Today, 4:15 PM</span>
+</div>
+</div>
+</div>
+<div class="text-right">
+<span class="font-title-md text-title-md font-bold text-on-surface">₹1,240</span>
+<div class="font-label-sm text-label-sm text-on-tertiary-container flex items-center justify-end">
+<span class="material-symbols-outlined text-[12px] mr-0.5" data-icon="sync">sync</span>
+                Shared
+              </div>
+</div>
+</div>
+<!-- Transaction 2: Adani Electricity -->
+<div class="p-3.5 flex items-center justify-between hover:bg-surface-container-low transition-colors">
+<div class="flex items-center space-x-3">
+<div class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]" data-icon="electric_bolt">electric_bolt</span>
+</div>
+<div>
+<div class="font-title-md text-title-md font-semibold text-on-surface leading-tight">Adani Electricity Bill</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant flex items-center space-x-1.5 mt-0.5">
+<span class="font-medium text-on-surface">Paid by Rajesh</span>
+<span>•</span>
+<span>NetBanking</span>
+<span>•</span>
+<span>Yesterday</span>
+</div>
+</div>
+</div>
+<div class="text-right">
+<span class="font-title-md text-title-md font-bold text-on-surface">₹2,850</span>
+<div class="font-label-sm text-label-sm text-on-surface-variant flex items-center justify-end">
+                Auto-debited
+              </div>
+</div>
+</div>
+<!-- Transaction 3: Haldiram -->
+<div class="p-3.5 flex items-center justify-between hover:bg-surface-container-low transition-colors">
+<div class="flex items-center space-x-3">
+<div class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined text-[20px]" data-icon="dining">dining</span>
+</div>
+<div>
+<div class="font-title-md text-title-md font-semibold text-on-surface leading-tight">Haldiram Family Dinner</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant flex items-center space-x-1.5 mt-0.5">
+<span class="font-medium text-on-surface">Paid by Rajesh</span>
+<span>•</span>
+<span>Credit Card</span>
+<span>•</span>
+<span>Oct 22</span>
+</div>
+</div>
+</div>
+<div class="text-right">
+<span class="font-title-md text-title-md font-bold text-on-surface">₹1,850</span>
+<div class="font-label-sm text-label-sm text-on-tertiary-container flex items-center justify-end">
+<span class="material-symbols-outlined text-[12px] mr-0.5" data-icon="splitscreen">splitscreen</span>
+                Split 4 ways
+              </div>
+</div>
+</div>
+</div>
+</section>
+<!-- Offline Sync Banner Footnote -->
+<div class="pt-2 pb-4 text-center">
+<p class="font-label-sm text-label-sm text-outline flex items-center justify-center space-x-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="lock">lock</span>
+<span>End-to-end encrypted across household devices</span>
+</p>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Shared Components Anchor Compliant) -->
+<!-- Executed exactly per JSON layout and active state rules -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-16 px-gutter-mobile bg-surface-container-lowest shadow-md border-t border-outline-variant max-w-md mx-auto right-0">
+<!-- Tab 1: Home (ACTIVE DESTINATION) -->
+<button class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-3 py-1 active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined text-[20px]" data-icon="home" data-weight="fill" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-sm text-label-sm font-semibold">Home</span>
+</button>
+<!-- Tab 2: Transactions -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-2 py-1 active:scale-95 transition-transform duration-150 hover:bg-surface-container-low">
+<span class="material-symbols-outlined text-[20px]" data-icon="receipt_long">receipt_long</span>
+<span class="font-label-sm text-label-sm">Transactions</span>
+</button>
+<!-- Tab 3: Add (Elevated Contextual Action FAB) -->
+<button aria-label="Add Expense" class="flex flex-col items-center justify-center text-on-secondary bg-secondary hover:bg-on-secondary-container -mt-5 w-12 h-12 rounded-full shadow-lg active:scale-95 transition-transform duration-150 border-4 border-surface-container-lowest">
+<span class="material-symbols-outlined text-[24px]" data-icon="add">add</span>
+</button>
+<!-- Tab 4: Budgets -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-2 py-1 active:scale-95 transition-transform duration-150 hover:bg-surface-container-low">
+<span class="material-symbols-outlined text-[20px]" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-label-sm text-label-sm">Budgets</span>
+</button>
+<!-- Tab 5: Reports -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-2 py-1 active:scale-95 transition-transform duration-150 hover:bg-surface-container-low">
+<span class="material-symbols-outlined text-[20px]" data-icon="bar_chart">bar_chart</span>
+<span class="font-label-sm text-label-sm">Reports</span>
+</button>
+</nav>
+</div>
+</body></html>

@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Transactions - FamilyWise AI</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-error": "#ffffff",
+            "background": "#f8f9ff",
+            "on-secondary-fixed": "#00201d",
+            "tertiary": "#000000",
+            "on-surface-variant": "#45464d",
+            "surface-dim": "#cbdbf5",
+            "on-primary-fixed-variant": "#3f465c",
+            "primary-fixed-dim": "#bec6e0",
+            "surface-tint": "#565e74",
+            "inverse-primary": "#bec6e0",
+            "primary-container": "#131b2e",
+            "surface-container": "#e5eeff",
+            "error-container": "#ffdad6",
+            "outline-variant": "#c6c6cd",
+            "on-tertiary-fixed-variant": "#005236",
+            "secondary": "#006a61",
+            "surface-variant": "#d3e4fe",
+            "on-background": "#0b1c30",
+            "on-secondary": "#ffffff",
+            "secondary-fixed": "#89f5e7",
+            "on-tertiary-fixed": "#002113",
+            "surface-container-high": "#dce9ff",
+            "on-tertiary-container": "#009668",
+            "tertiary-container": "#002113",
+            "tertiary-fixed-dim": "#4edea3",
+            "secondary-container": "#86f2e4",
+            "on-primary-fixed": "#131b2e",
+            "on-primary-container": "#7c839b",
+            "error": "#ba1a1a",
+            "secondary-fixed-dim": "#6bd8cb",
+            "inverse-surface": "#213145",
+            "on-primary": "#ffffff",
+            "on-secondary-container": "#006f66",
+            "surface-container-highest": "#d3e4fe",
+            "on-surface": "#0b1c30",
+            "tertiary-fixed": "#6ffbbe",
+            "surface-container-low": "#eff4ff",
+            "primary-fixed": "#dae2fd",
+            "surface-container-lowest": "#ffffff",
+            "on-error-container": "#93000a",
+            "primary": "#000000",
+            "surface-bright": "#f8f9ff",
+            "outline": "#76777d",
+            "on-secondary-fixed-variant": "#005049",
+            "on-tertiary": "#ffffff",
+            "surface": "#f8f9ff",
+            "inverse-on-surface": "#eaf1ff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-sm": "0.5rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "gutter": "1rem",
+            "space-xl": "2rem",
+            "margin-mobile": "1rem",
+            "gutter-mobile": "0.75rem",
+            "space-xs": "0.25rem",
+            "margin": "1.25rem"
+          },
+          "fontFamily": {
+            "display-currency": ["Inter"],
+            "body-lg": ["Inter"],
+            "body-sm": ["Inter"],
+            "headline-lg": ["Inter"],
+            "title-md": ["Inter"],
+            "label-lg": ["Inter"],
+            "body-md": ["Inter"],
+            "display-currency-mobile": ["Inter"],
+            "headline-sm": ["Inter"],
+            "headline-md": ["Inter"],
+            "label-md": ["Inter"],
+            "label-sm": ["Inter"]
+          },
+          "fontSize": {
+            "display-currency": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+            "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "title-md": ["16px", { "lineHeight": "22px", "fontWeight": "600" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "fontWeight": "500" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "display-currency-mobile": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+            "headline-md": ["22px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "label-md": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body-md antialiased min-h-screen flex flex-col justify-between selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- Fixed Top Shell: Anchored Brand Header and Ledger Controls -->
+<header class="sticky top-0 z-40 bg-surface-container-lowest/95 backdrop-blur-md shadow-sm">
+<!-- TopAppBar from Shared Components Specification -->
+<div class="flex justify-between items-center w-full px-margin-mobile py-2 max-w-screen-md mx-auto">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="family_restroom">family_restroom</span>
+<div>
+<span class="text-title-md font-title-md font-semibold text-on-surface">Sharma Family</span>
+<span class="flex items-center gap-1 text-label-sm font-label-sm text-secondary font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Ledger Active
+          </span>
+</div>
+</div>
+<div class="flex items-center gap-1">
+<button aria-label="Sync status" class="p-2 rounded-full text-on-surface-variant hover:bg-surface-container active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined text-[20px]" data-icon="cloud_done">cloud_done</span>
+</button>
+<button aria-label="Account" class="p-2 rounded-full text-on-surface-variant hover:bg-surface-container active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined text-[24px]" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</div>
+<!-- Search & Filter Cluster -->
+<div class="max-w-screen-md mx-auto px-margin-mobile pb-3 space-y-2.5">
+<!-- Title & Search Row -->
+<div class="flex items-center justify-between pt-1">
+<h1 class="text-headline-sm font-headline-sm font-bold tracking-tight text-on-surface">Transactions (October 2024)</h1>
+<button aria-label="Export Passbook" class="p-1.5 text-on-surface-variant hover:bg-surface-container rounded-lg active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[20px]" data-icon="file_download">file_download</span>
+</button>
+</div>
+<!-- Search Input with Leading Rupee and Indian Keyword Hints -->
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-outline text-[20px]" data-icon="search">search</span>
+<input class="w-full pl-10 pr-10 py-2.5 bg-surface-container-low border border-outline-variant rounded-xl text-body-md font-body-md text-on-surface placeholder:text-outline focus:outline-none focus:border-secondary focus:bg-surface-container-lowest transition-colors" placeholder="Search grocery, Swiggy, electricity, merchant..." type="text"/>
+<button aria-label="Voice search" class="absolute right-3 p-0.5 text-outline hover:text-on-surface">
+<span class="material-symbols-outlined text-[18px]" data-icon="mic">mic</span>
+</button>
+</div>
+<!-- Scrollable Filter Chips -->
+<div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5 text-label-sm font-label-sm">
+<button class="flex items-center gap-1 shrink-0 px-3 py-1.5 rounded-full bg-primary text-on-primary font-medium shadow-sm active:scale-95 transition-transform">
+<span>Date: This Month</span>
+<span class="material-symbols-outlined text-[16px]" data-icon="arrow_drop_down">arrow_drop_down</span>
+</button>
+<button class="flex items-center gap-1 shrink-0 px-3 py-1.5 rounded-full bg-surface-container-low text-on-surface-variant border border-outline-variant hover:bg-surface-container active:scale-95 transition-transform">
+<span>Category: All</span>
+<span class="material-symbols-outlined text-[16px]" data-icon="arrow_drop_down">arrow_drop_down</span>
+</button>
+<button class="flex items-center gap-1 shrink-0 px-3 py-1.5 rounded-full bg-surface-container-low text-on-surface-variant border border-outline-variant hover:bg-surface-container active:scale-95 transition-transform">
+<span>Paid by: All Members</span>
+<span class="material-symbols-outlined text-[16px]" data-icon="arrow_drop_down">arrow_drop_down</span>
+</button>
+<button class="flex items-center gap-1 shrink-0 px-3 py-1.5 rounded-full bg-surface-container-low text-on-surface-variant border border-outline-variant hover:bg-surface-container active:scale-95 transition-transform">
+<span>Mode: UPI</span>
+<span class="material-symbols-outlined text-[16px]" data-icon="arrow_drop_down">arrow_drop_down</span>
+</button>
+<button class="flex items-center gap-1 shrink-0 px-3 py-1.5 rounded-full bg-surface-container-low text-on-surface-variant border border-outline-variant hover:bg-surface-container active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[14px]" data-icon="swap_vert">swap_vert</span>
+<span>Sort: Newest</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Scrollable Ledger Area -->
+<main class="w-full max-w-screen-md mx-auto px-margin-mobile pt-3 pb-24 space-y-4 flex-1">
+<!-- Total Summary Banner: Bento Metric Card -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-4 shadow-sm flex items-center justify-between">
+<div class="space-y-0.5">
+<div class="flex items-center gap-1.5">
+<span class="text-label-md font-label-md text-on-surface-variant">Monthly Aggregation</span>
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-semibold bg-surface-container-high text-on-primary-fixed-variant">OCT</span>
+</div>
+<p class="text-label-lg font-label-lg text-outline">28 Transactions Logged</p>
+</div>
+<div class="text-right">
+<span class="text-label-sm font-label-sm text-secondary font-semibold uppercase tracking-wider">Total Spent</span>
+<div class="text-headline-sm font-headline-sm font-bold text-on-surface flex items-baseline justify-end gap-0.5">
+<span class="text-[16px] text-on-surface-variant font-medium">₹</span>
+<span>24,650</span>
+</div>
+</div>
+</section>
+<!-- Contextual Intelligence / Duplicate Warning Notice Card -->
+<section class="bg-error-container/40 border border-error/20 rounded-xl p-3.5 shadow-sm">
+<div class="flex items-start gap-3">
+<div class="w-8 h-8 rounded-full bg-error/10 flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-error text-[20px]" data-icon="warning">warning</span>
+</div>
+<div class="flex-1 space-y-1">
+<div class="flex items-center justify-between">
+<h2 class="text-label-lg font-label-lg font-bold text-on-error-container">Possible Duplicate Detected</h2>
+<span class="text-[10px] font-medium bg-surface-container-lowest text-on-surface-variant px-1.5 py-0.5 rounded border border-outline-variant">AI Guard</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant leading-relaxed">
+            2 entries of <span class="font-semibold text-on-surface">₹450</span> to <span class="font-semibold text-on-surface">"Mother Dairy"</span> logged on Oct 23 within 15 minutes.
+          </p>
+<div class="pt-1 flex items-center gap-2">
+<button class="px-3 py-1 bg-surface-container-lowest border border-error/30 text-error hover:bg-error-container rounded-lg text-label-sm font-label-sm font-semibold transition-colors active:scale-95">
+              Review &amp; Merge
+            </button>
+<button class="px-2.5 py-1 text-on-surface-variant hover:text-on-surface text-label-sm font-label-sm">
+              Dismiss
+            </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Ledger Day Group 1: Today -->
+<section class="space-y-2">
+<!-- Group Header with Day & Day Total -->
+<div class="flex items-center justify-between px-1 text-label-sm font-label-sm">
+<div class="flex items-center gap-1.5">
+<span class="font-bold text-on-surface">Today - Thursday, 24 Oct</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+</div>
+<div class="font-semibold text-on-surface-variant">
+          Day Total: <span class="text-on-surface font-bold">₹1,890</span>
+</div>
+</div>
+<!-- Transaction Cards Stack -->
+<div class="space-y-2">
+<!-- Item 1: Blinkit Express -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-xl p-3.5 shadow-sm relative overflow-hidden transition-all hover:border-secondary">
+<div class="flex items-start justify-between gap-3">
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 rounded-xl bg-surface-container-low flex items-center justify-center text-secondary shrink-0">
+<span class="material-symbols-outlined text-[22px]" data-icon="shopping_basket">shopping_basket</span>
+</div>
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<h3 class="text-title-md font-title-md font-bold text-on-surface">Blinkit Express</h3>
+<span class="px-2 py-0.2 rounded-full text-[10px] font-semibold bg-surface-container text-on-surface-variant">Groceries</span>
+</div>
+<div class="flex items-center gap-1.5 text-body-sm font-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px] text-secondary" data-icon="account_balance">account_balance</span>
+<span>Paid by Priya (UPI)</span>
+<span>•</span>
+<span>4:15 PM</span>
+</div>
+<!-- AI Attribution Tag -->
+<div class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary-container/30 text-on-secondary-container text-[11px] font-medium">
+<span class="material-symbols-outlined text-[12px]" data-icon="auto_awesome">auto_awesome</span>
+<span>Analyzed by FamilyWise AI</span>
+</div>
+</div>
+</div>
+<!-- Amount & Quick Actions -->
+<div class="text-right flex flex-col justify-between items-end h-full">
+<span class="text-title-md font-title-md font-bold text-on-surface">₹1,240</span>
+<div class="flex items-center gap-1 mt-3">
+<button aria-label="Edit Blinkit transaction" class="w-7 h-7 rounded-lg bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container flex items-center justify-center active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[16px]" data-icon="edit">edit</span>
+</button>
+<button aria-label="Delete Blinkit transaction" class="w-7 h-7 rounded-lg bg-surface-container-low text-error hover:bg-error-container flex items-center justify-center active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[16px]" data-icon="delete">delete</span>
+</button>
+</div>
+</div>
+</div>
+</article>
+<!-- Item 2: Mother Dairy Milk & Bread -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-xl p-3.5 shadow-sm relative overflow-hidden transition-all hover:border-secondary">
+<div class="flex items-start justify-between gap-3">
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 rounded-xl bg-surface-container-low flex items-center justify-center text-secondary shrink-0">
+<span class="material-symbols-outlined text-[22px]" data-icon="local_drink">local_drink</span>
+</div>
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<h3 class="text-title-md font-title-md font-bold text-on-surface">Mother Dairy Milk &amp; Bread</h3>
+<span class="px-2 py-0.2 rounded-full text-[10px] font-semibold bg-surface-container text-on-surface-variant">Groceries</span>
+</div>
+<div class="flex items-center gap-1.5 text-body-sm font-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px] text-outline" data-icon="payments">payments</span>
+<span>Paid by Rajesh (Cash)</span>
+<span>•</span>
+<span>8:00 AM</span>
+</div>
+<!-- Local Rule Badge -->
+<div class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-low text-on-surface-variant text-[11px] font-medium border border-outline-variant">
+<span class="material-symbols-outlined text-[12px]" data-icon="settings">settings</span>
+<span>Categorized by Local Rule</span>
+</div>
+</div>
+</div>
+<div class="text-right flex flex-col justify-between items-end h-full">
+<span class="text-title-md font-title-md font-bold text-on-surface">₹650</span>
+<div class="flex items-center gap-1 mt-3">
+<button aria-label="Edit Mother Dairy transaction" class="w-7 h-7 rounded-lg bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container flex items-center justify-center active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[16px]" data-icon="edit">edit</span>
+</button>
+<button aria-label="Delete Mother Dairy transaction" class="w-7 h-7 rounded-lg bg-surface-container-low text-error hover:bg-error-container flex items-center justify-center active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[16px]" data-icon="delete">delete</span>
+</button>
+</div>
+</div>
+</div>
+</article>
+</div>
+</section>
+<!-- Ledger Day Group 2: Yesterday -->
+<section class="space-y-2 pt-2">
+<!-- Group Header -->
+<div class="flex items-center justify-between px-1 text-label-sm font-label-sm">
+<div class="flex items-center gap-1.5">
+<span class="font-bold text-on-surface">Yesterday - Wednesday, 23 Oct</span>
+</div>
+<div class="font-semibold text-on-surface-variant">
+          Day Total: <span class="text-on-surface font-bold">₹4,150</span>
+</div>
+</div>
+<!-- Transaction Cards Stack -->
+<div class="space-y-2">
+<!-- Item 3: Adani Electricity Bill -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-xl p-3.5 shadow-sm relative overflow-hidden transition-all hover:border-secondary">
+<div class="flex items-start justify-between gap-3">
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 rounded-xl bg-surface-container-low flex items-center justify-center text-secondary shrink-0">
+<span class="material-symbols-outlined text-[22px]" data-icon="bolt">bolt</span>
+</div>
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<h3 class="text-title-md font-title-md font-bold text-on-surface">Adani Electricity Bill</h3>
+<span class="px-2 py-0.2 rounded-full text-[10px] font-semibold bg-surface-container text-on-surface-variant">Utilities</span>
+</div>
+<div class="flex items-center gap-1.5 text-body-sm font-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px] text-secondary" data-icon="account_balance">account_balance</span>
+<span>Paid by Rajesh (UPI)</span>
+<span>•</span>
+<span>3:20 PM</span>
+</div>
+<span class="text-[11px] text-outline font-medium">Split equally with 3 members</span>
+</div>
+</div>
+<div class="text-right flex flex-col justify-between items-end h-full">
+<span class="text-title-md font-title-md font-bold text-on-surface">₹2,850</span>
+<div class="flex items-center gap-1 mt-3">
+<button aria-label="Edit electricity bill" class="w-7 h-7 rounded-lg bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container flex items-center justify-center active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[16px]" data-icon="edit">edit</span>
+</button>
+<button aria-label="Delete electricity bill" class="w-7 h-7 rounded-lg bg-surface-container-low text-error hover:bg-error-container flex items-center justify-center active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[16px]" data-icon="delete">delete</span>
+</button>
+</div>
+</div>
+</div>
+</article>
+<!-- Item 4: Apollo Pharmacy Medicines -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-xl p-3.5 shadow-sm relative overflow-hidden transition-all hover:border-secondary">
+<div class="flex items-start justify-between gap-3">
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 rounded-xl bg-surface-container-low flex items-center justify-center text-secondary shrink-0">
+<span class="material-symbols-outlined text-[22px]" data-icon="prescriptions">prescriptions</span>
+</div>
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<h3 class="text-title-md font-title-md font-bold text-on-surface">Apollo Pharmacy Medicines</h3>
+<span class="px-2 py-0.2 rounded-full text-[10px] font-semibold bg-surface-container text-on-surface-variant">Healthcare</span>
+</div>
+<div class="flex items-center gap-1.5 text-body-sm font-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px] text-outline" data-icon="credit_card">credit_card</span>
+<span>Paid by Priya (Debit Card)</span>
+<span>•</span>
+<span>11:30 AM</span>
+</div>
+<div class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary-container/30 text-on-secondary-container text-[11px] font-medium">
+<span class="material-symbols-outlined text-[12px]" data-icon="auto_awesome">auto_awesome</span>
+<span>Rx Matched</span>
+</div>
+</div>
+</div>
+<div class="text-right flex flex-col justify-between items-end h-full">
+<span class="text-title-md font-title-md font-bold text-on-surface">₹850</span>
+<div class="flex items-center gap-1 mt-3">
+<button aria-label="Edit pharmacy expense" class="w-7 h-7 rounded-lg bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container flex items-center justify-center active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[16px]" data-icon="edit">edit</span>
+</button>
+<button aria-label="Delete pharmacy expense" class="w-7 h-7 rounded-lg bg-surface-container-low text-error hover:bg-error-container flex items-center justify-center active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[16px]" data-icon="delete">delete</span>
+</button>
+</div>
+</div>
+</div>
+</article>
+<!-- Item 5: Auto Rickshaw -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-xl p-3.5 shadow-sm relative overflow-hidden transition-all hover:border-secondary">
+<div class="flex items-start justify-between gap-3">
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 rounded-xl bg-surface-container-low flex items-center justify-center text-secondary shrink-0">
+<span class="material-symbols-outlined text-[22px]" data-icon="directions_car">directions_car</span>
+</div>
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<h3 class="text-title-md font-title-md font-bold text-on-surface">Auto Rickshaw</h3>
+<span class="px-2 py-0.2 rounded-full text-[10px] font-semibold bg-surface-container text-on-surface-variant">Transport</span>
+</div>
+<div class="flex items-center gap-1.5 text-body-sm font-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px] text-secondary" data-icon="account_balance">account_balance</span>
+<span>Paid by Aarav (UPI)</span>
+<span>•</span>
+<span>9:15 AM</span>
+</div>
+</div>
+</div>
+<div class="text-right flex flex-col justify-between items-end h-full">
+<span class="text-title-md font-title-md font-bold text-on-surface">₹450</span>
+<div class="flex items-center gap-1 mt-3">
+<button aria-label="Edit auto rickshaw expense" class="w-7 h-7 rounded-lg bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container flex items-center justify-center active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[16px]" data-icon="edit">edit</span>
+</button>
+<button aria-label="Delete auto rickshaw expense" class="w-7 h-7 rounded-lg bg-surface-container-low text-error hover:bg-error-container flex items-center justify-center active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[16px]" data-icon="delete">delete</span>
+</button>
+</div>
+</div>
+</div>
+</article>
+</div>
+</section>
+<!-- Ledger Day Group 3: 22 Oct, Tuesday -->
+<section class="space-y-2 pt-2">
+<!-- Group Header -->
+<div class="flex items-center justify-between px-1 text-label-sm font-label-sm">
+<div class="flex items-center gap-1.5">
+<span class="font-bold text-on-surface">22 Oct, Tuesday</span>
+</div>
+<div class="font-semibold text-on-surface-variant">
+          Day Total: <span class="text-on-surface font-bold">₹2,350</span>
+</div>
+</div>
+<!-- Transaction Cards Stack -->
+<div class="space-y-2">
+<!-- Item 6: Haldirams Family Dinner -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-xl p-3.5 shadow-sm relative overflow-hidden transition-all hover:border-secondary">
+<div class="flex items-start justify-between gap-3">
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 rounded-xl bg-surface-container-low flex items-center justify-center text-secondary shrink-0">
+<span class="material-symbols-outlined text-[22px]" data-icon="restaurant">restaurant</span>
+</div>
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<h3 class="text-title-md font-title-md font-bold text-on-surface">Haldirams Family Dinner</h3>
+<span class="px-2 py-0.2 rounded-full text-[10px] font-semibold bg-surface-container text-on-surface-variant">Dining</span>
+</div>
+<div class="flex items-center gap-1.5 text-body-sm font-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px] text-outline" data-icon="credit_card">credit_card</span>
+<span>Paid by Rajesh (Credit Card)</span>
+<span>•</span>
+<span>8:45 PM</span>
+</div>
+<div class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary-container/30 text-on-secondary-container text-[11px] font-medium">
+<span class="material-symbols-outlined text-[12px]" data-icon="auto_awesome">auto_awesome</span>
+<span>GST Tagged</span>
+</div>
+</div>
+</div>
+<div class="text-right flex flex-col justify-between items-end h-full">
+<span class="text-title-md font-title-md font-bold text-on-surface">₹1,850</span>
+<div class="flex items-center gap-1 mt-3">
+<button aria-label="Edit dining bill" class="w-7 h-7 rounded-lg bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container flex items-center justify-center active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[16px]" data-icon="edit">edit</span>
+</button>
+<button aria-label="Delete dining bill" class="w-7 h-7 rounded-lg bg-surface-container-low text-error hover:bg-error-container flex items-center justify-center active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[16px]" data-icon="delete">delete</span>
+</button>
+</div>
+</div>
+</div>
+</article>
+<!-- Item 7: Fruits & Vegetables Market -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-xl p-3.5 shadow-sm relative overflow-hidden transition-all hover:border-secondary">
+<div class="flex items-start justify-between gap-3">
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 rounded-xl bg-surface-container-low flex items-center justify-center text-secondary shrink-0">
+<span class="material-symbols-outlined text-[22px]" data-icon="storefront">storefront</span>
+</div>
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<h3 class="text-title-md font-title-md font-bold text-on-surface">Fruits &amp; Vegetables Market</h3>
+<span class="px-2 py-0.2 rounded-full text-[10px] font-semibold bg-surface-container text-on-surface-variant">Groceries</span>
+</div>
+<div class="flex items-center gap-1.5 text-body-sm font-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px] text-outline" data-icon="payments">payments</span>
+<span>Paid by Priya (Cash)</span>
+<span>•</span>
+<span>10:00 AM</span>
+</div>
+<span class="text-[11px] text-outline font-medium">Subzi Mandi local purchase</span>
+</div>
+</div>
+<div class="text-right flex flex-col justify-between items-end h-full">
+<span class="text-title-md font-title-md font-bold text-on-surface">₹500</span>
+<div class="flex items-center gap-1 mt-3">
+<button aria-label="Edit market expense" class="w-7 h-7 rounded-lg bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container flex items-center justify-center active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[16px]" data-icon="edit">edit</span>
+</button>
+<button aria-label="Delete market expense" class="w-7 h-7 rounded-lg bg-surface-container-low text-error hover:bg-error-container flex items-center justify-center active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[16px]" data-icon="delete">delete</span>
+</button>
+</div>
+</div>
+</div>
+</article>
+</div>
+</section>
+<!-- Contextual End Indicator -->
+<div class="text-center py-4">
+<span class="text-label-sm font-label-sm text-outline">End of visible entries for October 2024</span>
+</div>
+</main>
+<!-- Bottom Navigation Bar: Shared Component Implementation -->
+<!-- Active state mapped precisely to 'Transactions' per specification -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-16 px-gutter-mobile bg-surface-container-lowest shadow-md">
+<!-- Home -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-2 py-1 hover:bg-surface-container-low active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined text-[22px]" data-icon="home">home</span>
+<span class="text-label-sm font-label-sm mt-0.5">Home</span>
+</a>
+<!-- Transactions (ACTIVE DESTINATION) -->
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-3 py-1 active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined text-[22px]" data-icon="receipt_long" data-weight="fill" style="font-variation-settings: 'FILL' 1;">receipt_long</span>
+<span class="text-label-sm font-label-sm mt-0.5">Transactions</span>
+</a>
+<!-- Add (Center CTA Action) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-2 py-1 hover:bg-surface-container-low active:scale-95 transition-transform duration-150" href="#">
+<div class="w-8 h-8 rounded-full bg-secondary text-on-secondary flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
+</div>
+<span class="text-label-sm font-label-sm mt-0.5">Add</span>
+</a>
+<!-- Budgets -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-2 py-1 hover:bg-surface-container-low active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined text-[22px]" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="text-label-sm font-label-sm mt-0.5">Budgets</span>
+</a>
+<!-- Reports -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-2 py-1 hover:bg-surface-container-low active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined text-[22px]" data-icon="bar_chart">bar_chart</span>
+<span class="text-label-sm font-label-sm mt-0.5">Reports</span>
+</a>
+</nav>
+</body></html>
